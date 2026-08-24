@@ -13,7 +13,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
+  "type": "module",
   "bugs": {
     "url": "https://github.com/marianacastellanosparra/Proyecto-crud-express-3407182-Mariana-Castellanos-Parra/issues"
   },
