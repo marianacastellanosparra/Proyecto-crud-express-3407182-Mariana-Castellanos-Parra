@@ -1,10 +1,10 @@
 [
   {
     "nombre": "Mariana",
-    "edad": 17,
+    "edad": "17",
     "correo": "mariana@gmail.com",
-    "imagen": "url",
-    "clave": "1234"
+    "clave": "76954",
+    "imagen": "/misImagenes1788798692979.jpg"
   },
   {
     "nombre": "Ana",
@@ -19,7 +19,13 @@
     "correo": "dayana@gmail.com",
     "imagen": "url",
     "clave": "8520"
+  },
+  {
+    "nombre": "Alisonn",
+    "edad": "18",
+    "correo": "alison@gmail.com",
+    "clave": "795130",
+    "imagen": "/misImagenes1788797821767.jpg"
   }
+
 ]
-
-
