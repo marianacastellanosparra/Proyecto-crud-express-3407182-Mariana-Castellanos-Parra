@@ -7,25 +7,19 @@
     "imagen": "/misImagenes1788798692979.jpg"
   },
   {
-    "nombre": "Ana",
-    "edad": 17,
-    "correo": "ana@gmail.com",
-    "imagen": "url",
-    "clave": "7530"
+    "id": 1,
+    "nombre": "Sofia",
+    "edad": "18",
+    "correo": "sofia@gmail.com",
+    "clave": "123",
+    "imagen": "/misImagenes/1789389900591.jpg"
   },
   {
+    "id": 2,
     "nombre": "Dayana",
     "edad": "17",
     "correo": "dayana@gmail.com",
-    "imagen": "url",
-    "clave": "8520"
-  },
-  {
-    "nombre": "Alisonn",
-    "edad": "18",
-    "correo": "alison@gmail.com",
-    "clave": "795130",
-    "imagen": "/misImagenes1788797821767.jpg"
+    "clave": "123",
+    "imagen": "/misImagenes/1789389944533.jpg"
   }
-
 ]
