@@ -1,10 +1,14 @@
+require("dotenv").config()
 const { error } = require('console');
 const express = require('express');
+
 const app = express();
 const port = process.env.MIPUERTO || 3003; 
+const jwtojen = require ("jsonwebtoken")
 //importar mis middleware
-const registroMiddleware = require("./middleware/registroMiddleware")
-const manejadorErrores= require("./middleware/manejadorErrores")
+const registroMiddleware = require("./src/middleware/registroMiddleware")
+const manejadorErrores = require("./src/middleware/manejadorErrores")
+const autenticacionMiddleware = require("./src/middleware/autentificacionMiddleware")
 //middlewarc body-parse
 app.use(express.json())
 app.use(express.urlencoded({extended : true}))
@@ -17,7 +21,7 @@ const ruta = require("path")
 const rutaMiArchivo = ruta.join(__dirname,"datos.json")
 
 //importar validacion
-const { validarAprendiz } = require("./validaciones/validaciones")
+const { validarAprendiz } = require("./src/validaciones/validaciones")
 
 //importar multer
 const multer =require("multer")
@@ -32,9 +36,6 @@ const almacen = multer.diskStorage({
 
 })
 const subir = multer({storage: almacen})
-
-
-
 
 app.get('/', (req, res) => {
   res.send('API Rest Full con express');
@@ -87,6 +88,32 @@ res.status(200).json({Mensaje:"eliminado"})
 app.get("/api/error", (req, res, next)=>{
   next(new Error("Este es un error provocado"))
 })
+
+//Ruta protegida, para acceder con token, permisos de usuario
+app.get("/api/rutaprotegida", autenticacionMiddleware,(req, res)=>{
+  res.json({ mensaje: "Ruta Protegida, acceso con token"})
+});
+
+//endpoint o ruta de inicio de sesion para generar un token
+app.post("/api/login", (req, res)=>{
+  //capturar datos del usuario
+  const { usuario, clave} = req.body;
+  //simular datos de usuario en la base de datos
+  const bdUsuario = {"usuario": "mariana", "clave": "abc123"}
+  //validar datos
+  if (usuario !== bdUsuario.usuario || clave !== bdUsuario.clave)
+  {
+    res.json({mensaje:"Usuario y/o clave incorrecta!!"})
+  }
+  //verificacion y generacion del token
+  const token = jwtojen.sign(
+    {"user": req.usuario},
+    process.env.JWT_SECRETO, {
+      expiresIn:"1h",
+    });
+  res.json({ token });
+});
+
 
 app.use(manejadorErrores)
 
